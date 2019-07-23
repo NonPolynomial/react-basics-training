@@ -1,0 +1,580 @@
+import { Appear, Notes } from 'mdx-deck';
+import { Split } from 'mdx-deck/layouts';
+
+import {
+  Code,
+  CodeSurferLayout,
+  CodeSurferColumnLayout,
+  Step,
+} from 'code-surfer';
+
+import { inlineCodeStyle } from '../helper';
+
+# React<br />Einsteiger-Schulung
+
+---
+
+## Getting started
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/intro/').default} />
+<Code lang="jsx" focus="2:3" code={require('!raw-loader!./examples/intro/').default} />
+<Code lang="jsx" focus="5:15" code={require('!raw-loader!./examples/intro/').default} />
+<Code lang="jsx" focus="6:13" code={require('!raw-loader!./examples/intro/').default} />
+<Code lang="jsx" focus="14" code={require('!raw-loader!./examples/intro/').default} />
+
+</CodeSurferLayout>
+
+<Notes>
+  <h2>
+    Was benötigen wir?
+  </h2>
+  <p>Imports</p>
+  <p>`render`-call</p>
+  <p>zu rendernde React-Elemente / -Components (JSX)</p>
+  <p>Target</p>
+</Notes>
+
+---
+
+<CodeSurferLayout>
+
+```html
+// index.html
+<head>[...]</head>
+<div id="app">
+  Dieser Inhalt wird vom Browser angezeigt
+  bis das JavaScript geladen wurde
+  und die React Elemente rendered.
+</div>
+```
+
+```html 4
+// index.html
+<head>[...]</head>
+<div id="app">
+  App is initializing...
+</div>
+```
+
+</CodeSurferLayout>
+
+<Notes>
+  <h2>
+    Das HTML
+  </h2>
+  <p>
+    der Inhalt von Target wird überschrieben
+  </p>
+</Notes>
+
+---
+
+## JSX
+
+<Appear>
+
+<p>
+  Syntax Erweiterung für JavaScript
+</p>
+
+<p>
+  kann Expressions enthalten und löst diese auf
+</p>
+
+<p>
+  wird während des Build-Prozesses zu<br/>
+  JavaScript-Funktionen aufgelöst
+</p>
+
+</Appear>
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+<div>Hello, world!</div>
+```
+
+```jsx
+React.createElement(
+  'div',
+  null,
+  'Hello, world!'
+)
+```
+
+```jsx 2
+React.createElement(
+  'div',
+  null,
+  'Hello, world!'
+)
+```
+
+```jsx 3
+React.createElement(
+  'div',
+  null,
+  'Hello, world!'
+)
+```
+
+```jsx 4
+React.createElement(
+  'div',
+  null,
+  'Hello, world!'
+)
+```
+
+```jsx
+<div>
+  <h3>A simple list</h3>
+  <ul>
+    <li>first</li>
+    <li>second</li>
+    <li>third</li>
+  </ul>
+</div>
+```
+
+```jsx
+React.createElement(
+  "div",
+  null,
+  React.createElement(
+    "h3",
+    null,
+    "A simple list"
+  ),
+  React.createElement(
+    "ul",
+    null,
+    React.createElement(
+      "li",
+      null,
+      "first"
+    ),
+    React.createElement(
+      "li",
+      null,
+      "second"
+    ),
+    React.createElement(
+      "li",
+      null,
+      "third"
+    )
+  )
+)
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+<Code lang="jsx" code={require('!raw-loader!./examples/intro/').default} />
+{(require('./render/intro/').default())}
+</Step>
+
+<Step>
+<Code lang="jsx" focus="6:13" code={require('!raw-loader!./examples/intro/').default} />
+{(require('./render/intro/').default())}
+</Step>
+
+<Step>
+<Code lang="jsx" focus="5:14,17" code={require('!raw-loader!./examples/intro/1').default} />
+{(require('./render/intro/').default())}
+</Step>
+
+<Step>
+<Code lang="jsx" code={require('!raw-loader!./examples/intro/2').default} />
+{(require('./render/intro/1').default())}
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+## Eigene Komponenten
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/intro/2').default} />
+<Code lang="jsx" focus="34:43" code={require('!raw-loader!./examples/firstComponents/').default} />
+<Code lang="jsx" focus="35" code={require('!raw-loader!./examples/firstComponents/').default} />
+<Code lang="jsx" focus="37" code={require('!raw-loader!./examples/firstComponents/').default} />
+<Code lang="jsx" focus="38:40" code={require('!raw-loader!./examples/firstComponents/').default} />
+<Code lang="jsx" focus="43" code={require('!raw-loader!./examples/firstComponents/').default} />
+<Code lang="jsx" focus="5,13:15" code={require('!raw-loader!./examples/firstComponents/').default} />
+<Code lang="jsx" focus="5,13:15" code={require('!raw-loader!./examples/firstComponents/1').default} />
+
+</CodeSurferLayout>
+
+<Notes>
+  <p>
+    List item element auslagern
+  </p>
+  <p>
+    benötigen eine Komponente
+  </p>
+</Notes>
+
+---
+
+<CodeSurferColumnLayout sizes={[1,1]}>
+
+<Step>
+<Code lang="jsx" focus="1:23" code={require('!raw-loader!./examples/firstComponents/1').default} />
+{require('./render/firstComponents/').default()}
+</Step>
+
+<Step>
+<Code lang="jsx" focus="13:15" code={require('!raw-loader!./examples/firstComponents/1').default} />
+{require('./render/firstComponents/').default()}
+</Step>
+
+<Step>
+<Code lang="jsx" focus="39" code={require('!raw-loader!./examples/firstComponents/1').default} />
+{require('./render/firstComponents/').default()}
+</Step>
+
+</CodeSurferColumnLayout>
+
+<Notes>
+  <p>
+    selber Inhalt für alle ListItems trotz anderen Strings 
+  </p>
+  <p>
+    in Komponente wird statischer Inhalt verwendet
+  </p>
+  <p>
+    Komponente muss lernen, wie sie Informationen entgegennimmt
+  </p>
+</Notes>
+
+---
+
+### Exkurs: DOM
+#### Properties vs. Attributes
+
+<Appear>
+
+HTML-Tags werden in JavaScript als `HTMLElement` repräsentiert<br/>
+und dem `DOM` hinzugefügt
+
+`HTMLElement`e sind JavaScript-Objekte
+
+</Appear>
+
+---
+
+`input`
+
+|     Prototype      |       Attribute        |         Properties         |
+| ------------------ | ---------------------- | -------------------------- |
+| `HTMLInputElement` | `type`<br/>`value`     | `type`<br/>`value`         |
+| `HTMLElement`      | `class`<br/>`tabindex` | `className`<br/>`tabIndex` |
+
+---
+
+`label`
+
+|     Prototype      |       Attribute        |         Properties         |
+| ------------------ | ---------------------- | -------------------------- |
+| `HTMLLabelElement` | `for`                  | `htmlFor`                  |
+| `HTMLElement`      | `class`<br/>`tabindex` | `className`<br/>`tabIndex` |
+
+---
+
+Props können jeden Datentyp enthalten
+
+<Appear>
+
+...auch Funktionen
+
+React Elemente sind JavaScript-Objekte
+
+React Components sind Funktionen, die React Elemente rendern
+
+</Appear>
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+<List items={['Lorem.', 'Dolorem?', 'Ut?']} />
+<NumberInput defaultValue={42} />
+
+<p
+  style="color:'red';"
+>
+  Lorem ipsum dolor sit amet.
+</p>
+```
+
+```jsx 5
+<List items={['Lorem.', 'Dolorem?', 'Ut?']} />
+<NumberInput defaultValue={42} />
+
+<p
+  style={{ color: 'red' }}
+>
+  Lorem ipsum dolor sit amet.
+</p>
+```
+
+```jsx
+<ListItem content="Lorem." />
+<ListItem content={'Dolorem?'} />
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step title="Special Prop: children">
+<Code
+  lang="jsx"
+  code={`
+    // head.js
+    <MetaAuthor>
+      Sascha Metz
+    </MetaAuthor>
+  `}
+/>
+<Code
+  lang="jsx"
+  code={`
+    // MetaAuthor.js
+    class MetaAuthor extends React.Component {
+      render() {
+        return <meta
+          name="author"
+          content={this.props.children}
+        />;
+      }
+    }
+  `}
+/>
+</Step>
+
+<Step title="Special Prop: children">
+<Code
+  lang="jsx"
+  focus="4"
+  code={`
+    // head.js
+    <MetaAuthor>
+      Sascha Metz
+    </MetaAuthor>
+  `}
+/>
+<Code
+  lang="jsx"
+  focus="7"
+  code={`
+    // MetaAuthor.js
+    class MetaAuthor extends React.Component {
+      render() {
+        return <meta
+          name="author"
+          content={this.props.children}
+        />;
+      }
+    }
+  `}
+/>
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+<Code lang="jsx" focus="39" code={require('!raw-loader!./examples/firstComponents/1').default} />
+{require('./render/firstComponents/').default()}
+</Step>
+
+<Step>
+<Code lang="jsx" code={require('!raw-loader!./examples/firstComponents/children').default} />
+{require('./render/intro/1').default()}
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+## Listen
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" focus="1:23" code={require('!raw-loader!./examples/firstComponents/children').default} />
+<Code lang="jsx" focus="12:16" code={require('!raw-loader!./examples/firstComponents/children').default} />
+
+```jsx
+// List.js
+import React from 'react';
+```
+
+```jsx
+// List.js
+import React from 'react';
+
+class List extends React.Component {
+  render() {
+    return <ul></ul>;
+  }
+}
+
+export default List;
+```
+
+```jsx
+// List.js
+import React from 'react';
+
+import ListItem from './ListItem';
+
+class List extends React.Component {
+  render() {
+    return <ul></ul>;
+  }
+}
+
+export default List;
+```
+
+```jsx
+// List.js
+import React from 'react';
+
+import ListItem from './ListItem';
+
+class List extends React.Component {
+  render() {
+    const { items } = this.props;
+    return <ul></ul>;
+  }
+}
+
+export default List;
+```
+
+```jsx 10:12
+// List.js
+import React from 'react';
+
+import ListItem from './ListItem';
+
+class List extends React.Component {
+  render() {
+    const { items } = this.props;
+    return <ul>
+      {items.map(
+        item => <ListItem>{item}</ListItem>
+      )}
+    </ul>;
+  }
+}
+
+export default List;
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+<Code lang="jsx" focus="1:23" code={require('!raw-loader!./examples/firstComponents/children').default} />
+{require('./render/list/').default()}
+</Step>
+
+<Step>
+<Code lang="jsx" code={require('!raw-loader!./examples/list/').default} />
+{require('./render/list/').default()}
+</Step>
+
+<Step>
+<Code lang="jsx" focus="1:19" code={require('!raw-loader!./examples/list/List').default} />
+{require('./render/list/').default()}
+</Step>
+
+<Step>
+<Code lang="jsx" code={require('!raw-loader!./examples/list/List.1').default} />
+{require('./render/list/keys').default()}
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+## Functional Components
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+
+<div>
+  <h3>stateful components</h3>
+  <ul>
+    <li>jede Component hat einen eigenen State</li>
+    <li>besitzt Lifecycle Hooks</li>
+    <li>steuert wie Daten geladen und modifiziert werden</li>
+    <li>kann andere stateless und stateful Components beinhalten</li>
+  </ul>
+</div>
+
+<div>
+  <h3>functional / stateless components</h3>
+  <ul>
+    <li>performanter</li>
+    <li>
+      beschäftigen sich lediglich mit dem Aussehen
+      <ul>
+        <li>Elemente</li>
+        <li>Styling</li>
+      </ul>
+    </li>
+    <li>ignoriert wie Daten geladen oder verändert werden</li>
+    <li>keine Abhängigkeiten zum Rest der App</li>
+    <li>wird nur über Props und Callbacks gesteuert</li>
+    <li>kann andere stateless Components beinhalten</li>
+  </ul>
+</div>
+
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/list/').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/functional/').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/functional/1').default} />
+<Code lang="jsx" focus="1:19" code={require('!raw-loader!./examples/functional/1').default} />
+
+</CodeSurferLayout>

@@ -1,0 +1,164 @@
+import { Appear, Notes } from 'mdx-deck';
+import { Split } from 'mdx-deck/layouts';
+
+import {
+  Code,
+  CodeSurferLayout,
+  CodeSurferColumnLayout,
+  Step,
+} from 'code-surfer';
+
+## Praxis
+### Einleitung
+
+<Notes>
+  Hallo
+</Notes>
+
+---
+
+<CodeSurferLayout>
+
+```bash
+$ npm -g i create-react-app
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```bash
+$ npx create-react-app myApp
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```bash
+$ cd myApp
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```html
+.
+├── node_modules/
+├── public/
+├── src/
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+```
+.
+├── node_modules/
+├── public/
+│   ├── index.html
+│   └── (...)
+├── src/
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+```
+.
+├── node_modules/
+├── public/
+│   ├── index.html
+│   └── (...)
+├── src/
+│   ├── App.js
+│   ├── index.js
+│   └── (...)
+├── .gitignore
+├── package.json
+└── README.md
+```
+
+</CodeSurferLayout>
+
+---
+
+
+<CodeSurferLayout>
+
+```jsx
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+```
+
+```jsx 2:3,5,8
+// index.js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```jsx 1:2,5:27
+// App.js
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
+}
+
+export default App;
+```
+
+</CodeSurferLayout>

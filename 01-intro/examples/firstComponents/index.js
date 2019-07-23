@@ -1,0 +1,43 @@
+// index.js
+import React from 'react';
+import { render } from 'react-dom';
+
+import ListItem from './ListItem';
+
+const headline = 'Meine Liste';
+
+const App = (
+  <div>
+    <h3>{headline}</h3>
+    <ul>
+      <li>Lorem.</li>
+      <li>Dolorem?</li>
+      <li>Ut?</li>
+    </ul>
+  </div>
+);
+
+render(
+  App,
+  document.getElementById('app')
+);
+
+
+
+
+
+
+
+
+
+
+// ListItem.js
+import React from 'react';
+
+class ListItem extends React.Component {
+  render() {
+    return <li>Eintrag</li>;
+  }
+}
+
+export default ListItem;
