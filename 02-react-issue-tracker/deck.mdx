@@ -94,7 +94,7 @@ $ cd myApp
 <CodeSurferLayout>
 
 ```jsx
-// index.js
+// src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -110,7 +110,7 @@ serviceWorker.unregister();
 ```
 
 ```jsx 2:3,5,8
-// index.js
+// src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -132,7 +132,7 @@ serviceWorker.unregister();
 <CodeSurferLayout>
 
 ```jsx 1:2,5:27
-// App.js
+// src/App.js
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
@@ -155,6 +155,385 @@ function App() {
         </a>
       </header>
     </div>
+  );
+}
+
+export default App;
+```
+
+```jsx
+// src/App.js
+import React from 'react';
+import './App.css';
+
+function App() {
+  return (
+    <div>
+      <header>
+        <h1>Issue Tracker</h1>
+      </header>
+      <h2>Projects</h2>
+      <ul>
+        <li>Foo</li>
+        <li>Bar</li>
+        <li>Baz</li>
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+// src/components/Layout/Layout.js
+import React from 'react';
+
+const Layout = ({ children }) => (
+  <div className="layout">
+    <header>
+      <h1>Issue Tracker</h1>
+    </header>
+    {children}
+  </div>
+);
+
+export default Layout;
+```
+
+```css 2:4
+// src/components/Layout/Layout.css
+.layout {
+  margin: 20px 5vw 0;
+}
+```
+
+```jsx
+// src/components/Layout/Layout.js
+import React from 'react';
+
+const Layout = ({ children }) => (
+  <div className="layout">
+    <header>
+      <h1>Issue Tracker</h1>
+    </header>
+    {children}
+  </div>
+);
+
+export default Layout;
+```
+
+```jsx
+// src/components/Layout/Layout.js
+import React from 'react';
+import './Layout.css';
+
+const Layout = ({ children }) => (
+  <div className="layout">
+    <header>
+      <h1>Issue Tracker</h1>
+    </header>
+    {children}
+  </div>
+);
+
+export default Layout;
+```
+
+```js
+// src/components/Layout/index.js
+export { default } from './Layout';
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+// src/App.js
+import React from 'react';
+import './App.css';
+
+function App() {
+  return (
+    <div>
+      <header>
+        <h1>Issue Tracker</h1>
+      </header>
+      <h2>Projects</h2>
+      <ul>
+        <li>Foo</li>
+        <li>Bar</li>
+        <li>Baz</li>
+      </ul>
+    </div>
+  );
+}
+
+export default App;
+```
+
+```jsx
+// src/App.js
+import React from 'react';
+import './App.css';
+
+import Layout from './components/Layout';
+
+function App() {
+  return (
+    <Layout>
+      <h2>Projects</h2>
+      <ul>
+        <li>Foo</li>
+        <li>Bar</li>
+        <li>Baz</li>
+      </ul>
+    </Layout>
+  );
+}
+
+export default App;
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+// src/components/ProjectOverview/ProjectOverview.js
+import React from 'react';
+
+const ProjectOverview = () => (
+  <div className="project-overview__container">
+  </div>
+);
+
+export default ProjectOverview;
+```
+
+```jsx
+// src/components/ProjectOverview/ProjectOverview.js
+import React from 'react';
+
+const ProjectOverview = ({ projects }) => ( 
+  <div className="project-overview__container">
+    {projects.map(project => (
+      <article key={project.id} className="project-overview__item">
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+      </article>
+    ))}
+  </div>
+);
+
+export default ProjectOverview;
+```
+
+```css
+// src/components/ProjectOverview/ProjectOverview.css
+.project-overview__container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+} 
+ 
+.project-overview__item {
+  background-color: #dedede;
+  margin: 15px;
+  padding: 0 15px 15px;
+  flex-basis: 250px;
+}
+```
+
+```jsx
+// src/components/ProjectOverview/ProjectOverview.js
+import React from 'react';
+
+const ProjectOverview = ({ projects }) => ( 
+  <div className="project-overview__container">
+    {projects.map(project => (
+      <article key={project.id} className="project-overview__item">
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+      </article>
+    ))}
+  </div>
+);
+
+export default ProjectOverview; 
+```
+
+```jsx
+// src/components/ProjectOverview/ProjectOverview.js
+import React from 'react';
+import './ProjectOverview.css';
+
+const ProjectOverview = ({ projects }) => ( 
+  <div className="project-overview__container">
+    {projects.map(project => (
+      <article key={project.id} className="project-overview__item">
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+      </article>
+    ))}
+  </div>
+);
+
+export default ProjectOverview; 
+```
+
+```js
+// src/components/ProjectOverview/index.js
+export { default } from './ProjectOverview';
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+// src/App.js
+import React from 'react';
+import './App.css';
+
+import Layout from './components/Layout';
+
+function App() {
+  return (
+    <Layout>
+      <h2>Projects</h2>
+      <ul>
+        <li>Foo</li>
+        <li>Bar</li>
+        <li>Baz</li>
+      </ul>
+    </Layout>
+  );
+}
+
+export default App;
+```
+
+```jsx
+// src/App.js
+import React from 'react';
+import './App.css';
+
+import Layout from './components/Layout';
+import ProjectOverview from './components/ProjectOverview';
+
+function App() {
+  return (
+    <Layout>
+      <h2>Projects</h2>
+      <ProjectOverview
+        projects={[]}
+      />
+    </Layout>
+  );
+}
+
+export default App;
+```
+
+```jsx
+// src/App.js
+import React from 'react';
+import faker from 'faker';
+
+import './App.css';
+
+import Layout from './components/Layout';
+import ProjectOverview from './components/ProjectOverview';
+
+const projects = Array.from({ length: 7 }, () => ({
+  id: faker.random.uuid(),
+  title: faker.company.companyName(),
+  description: faker.lorem.paragraph(),
+}));
+
+function App() {
+  return (
+    <Layout>
+      <h2>Projects</h2>
+      <ProjectOverview
+        projects={[]}
+      />
+    </Layout>
+  );
+}
+
+export default App;
+```
+
+```jsx
+// src/App.js
+import React from 'react';
+import faker from 'faker';
+
+import './App.css';
+
+import Layout from './components/Layout';
+import ProjectOverview from './components/ProjectOverview';
+
+const projects = Array.from({ length: 7 }, () => ({
+  id: faker.random.uuid(),
+  title: faker.company.companyName(),
+  description: faker.lorem.paragraph(),
+}));
+
+function App() {
+  return (
+    <Layout>
+      <h2>Projects</h2>
+      <ProjectOverview
+        projects={projects}
+      />
+    </Layout>
+  );
+}
+
+export default App;
+```
+
+```jsx 1:27
+// src/App.js
+import React from 'react';
+import faker from 'faker';
+
+import './App.css';
+
+import Layout from './components/Layout';
+import ProjectOverview from './components/ProjectOverview';
+
+const projects = Array.from({ length: 7 }, () => ({
+  id: faker.random.uuid(),
+  title: faker.company.companyName(),
+  description: faker.lorem.paragraph(),
+}));
+
+function App() {
+  return (
+    <Layout>
+      <h2>Projects</h2>
+      <ProjectOverview
+        projects={projects}
+      />
+    </Layout>
   );
 }
 
