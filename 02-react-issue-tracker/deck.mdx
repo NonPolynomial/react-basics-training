@@ -195,6 +195,21 @@ export default App;
 // src/components/Layout/Layout.js
 import React from 'react';
 
+const Layout = () => (
+  <div className="layout">
+    <header>
+      <h1>Issue Tracker</h1>
+    </header>
+  </div>
+);
+
+export default Layout;
+```
+
+```jsx
+// src/components/Layout/Layout.js
+import React from 'react';
+
 const Layout = ({ children }) => (
   <div className="layout">
     <header>
@@ -450,7 +465,7 @@ function App() {
 export default App;
 ```
 
-```jsx
+```jsx 3,8:14,20:22
 // src/App.js
 import React from 'react';
 import faker from 'faker';
@@ -480,7 +495,7 @@ function App() {
 export default App;
 ```
 
-```jsx
+```jsx 10:14,20:22
 // src/App.js
 import React from 'react';
 import faker from 'faker';
