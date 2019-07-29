@@ -8,6 +8,8 @@ import {
   Step,
 } from 'code-surfer';
 
+import { inlineCodeStyle } from '../helper';
+
 ## Praxis
 ### Einleitung
 
@@ -578,3 +580,233 @@ export default App;
 ```
 
 </CodeSurferLayout>
+
+---
+
+## Component Lifecycle
+
+---
+
+### Mounting
+
+- constructor
+- render
+- componentDidMount
+
+---
+
+### Updating
+
+- shouldComponentUpdate
+- render
+- componentDidUpdate
+
+---
+
+### Unmounting
+
+- componentWillUnmount
+
+---
+
+## State
+
+---
+
+### Unterschiede zwsichen<br/>Props und State
+
+<Split>
+
+<Appear>
+
+<li>
+  Props sind statisch
+</li>
+
+<li>
+  werden bei Initialisierung übergeben
+</li>
+
+<li>
+  Props werden nach der Übergabe nicht verändert<br/>
+  &nbsp;
+</li>
+
+</Appear>
+
+<Appear>
+
+<li>
+  State ist dynamisch
+</li>
+
+<li>
+  wird im <code style={inlineCodeStyle}>constructor</code> initialisiert
+</li>
+
+<li>
+  kann an unterschiedlichen Stellen verändert werden<br/>
+  z.B. <code style={inlineCodeStyle}>componentDidMount</code>
+</li>
+
+</Appear>
+
+</Split>
+
+---
+
+### State Manual
+
+<Appear>
+
+<li>
+  eigent sich für Variablen,<br/>
+  die sich während der Laufzeit einer Component ändern
+</li>
+
+<li>
+  um änderbaren Inhalt zu steuern
+</li>
+
+<li>
+  kann durch <code style={inlineCodeStyle}>this.setState()</code> veränedert werden
+</li>
+
+</Appear>
+
+---
+
+<CodeSurferLayout>
+
+```js
+this.setState({ foo: 'bar' });
+```
+
+```js
+this.setState(({ counter }) => ({
+  counter: counter + 1,
+}));
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+// Quotes.js
+import React from 'react';
+
+class Quotes extends React.Component {
+}
+
+export default Quotes;
+```
+
+```jsx
+// Quotes.js
+import React from 'react';
+
+class Quotes extends React.Component {
+  render() {
+    return <p></p>;
+  }
+}
+
+export default Quotes;
+```
+
+```jsx
+// Quotes.js
+import React from 'react';
+
+class Quotes extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      current: 0,
+      quotes: [
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, eum?',
+        'Nostrum, natus a. Repellat est dolor id error delectus molestias.',
+        'Nemo doloribus totam inventore commodi at cupiditate amet modi quia.',
+        'Quisquam ut a ea dignissimos dolorem magni harum hic voluptatibus!',
+        'Enim eaque quis amet autem error ipsa, exercitationem dignissimos tenetur?',
+      ],
+    };
+  }
+
+  render() {
+    const { current, quotes } = this.state;
+    return <p>{quotes[current]}</p>;
+  }
+}
+
+export default Quotes;
+```
+
+```jsx
+// Quotes.js
+import React from 'react';
+
+class Quotes extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      current: 0,
+      quotes: [
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, eum?',
+        'Nostrum, natus a. Repellat est dolor id error delectus molestias.',
+        'Nemo doloribus totam inventore commodi at cupiditate amet modi quia.',
+        'Quisquam ut a ea dignissimos dolorem magni harum hic voluptatibus!',
+        'Enim eaque quis amet autem error ipsa, exercitationem dignissimos tenetur?',
+      ],
+    };
+  }
+
+  componentDidMount() {
+    this.timer = setInterval(() => {
+      const { quotes } = this.state;
+      const next = this.state.current + 1;
+      this.setState({
+        current: quotes[next] ? next : 0,
+      });
+    }, 1500);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
+  render() {
+    const { current, quotes } = this.state;
+    return <p>{quotes[current]}</p>;
+  }
+}
+
+export default Quotes;
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/state/Quotes').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/state/Quotes.1').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+<Code lang="jsx" code={require('!raw-loader!./examples/state/Quotes.1').default} />
+{(require('./render/state/Quotes.1').default())}
+</Step>
+
+</CodeSurferColumnLayout>
