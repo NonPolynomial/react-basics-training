@@ -207,7 +207,15 @@ Component erhält eine Liste von Projekten, die sie darstellen soll
 
 Ein Projekt beihnaltet vorerst folgende Eigenschaften:
 
-ID, Titel und Beschreibung
+<li>
+  ID
+</li>
+<li>
+  Titel
+</li>
+<li>
+  Beschreibung
+</li>
 
 </Appear>
 
@@ -489,7 +497,7 @@ function App() {
 export default App;
 ```
 
-```jsx 3,8:14,20:22
+```jsx 3,10:14
 // src/App.js
 import React from 'react';
 import faker from 'faker';
@@ -613,7 +621,7 @@ export default App;
 
 ---
 
-### Unterschiede zwsichen<br/>Props und State
+### Unterschiede zwischen<br/>Props und State
 
 <Split>
 
@@ -767,6 +775,45 @@ class Quotes extends React.Component {
   }
 
   componentDidMount() {
+    setInterval(() => {
+      const { quotes } = this.state;
+      const next = this.state.current + 1;
+      this.setState({
+        current: quotes[next] ? next : 0,
+      });
+    }, 1500);
+  }
+
+  render() {
+    const { current, quotes } = this.state;
+    return <p>{quotes[current]}</p>;
+  }
+}
+
+export default Quotes;
+```
+
+```jsx
+// Quotes.js
+import React from 'react';
+
+class Quotes extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      current: 0,
+      quotes: [
+        'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Mollitia, eum?',
+        'Nostrum, natus a. Repellat est dolor id error delectus molestias.',
+        'Nemo doloribus totam inventore commodi at cupiditate amet modi quia.',
+        'Quisquam ut a ea dignissimos dolorem magni harum hic voluptatibus!',
+        'Enim eaque quis amet autem error ipsa, exercitationem dignissimos tenetur?',
+      ],
+    };
+  }
+
+  componentDidMount() {
     this.timer = setInterval(() => {
       const { quotes } = this.state;
       const next = this.state.current + 1;
@@ -810,3 +857,325 @@ export default Quotes;
 </Step>
 
 </CodeSurferColumnLayout>
+
+---
+
+## Exercise
+
+### 🎉🎉🎉
+
+---
+
+## Aufgaben
+
+<Appear>
+
+Service soll ein Promise zurückgeben, das zu einem Array resolved
+
+`App` Component soll um einen State erweitert werden
+
+Lifecycle Hook soll den State mit den neuen Daten anreichern
+
+die `render` Funktion soll sich die Daten aus dem State holen
+
+
+</Appear>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
+<Code focus="2" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
+<Code focus="5" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
+<Code focus="6" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
+<Code focus="7,8" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
+<Code focus="9:29" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
+<Code focus="10" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
+<Code focus="11:28" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
+<Code focus="12:14" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+// src/App.js
+import React from 'react';
+import faker from 'faker';
+
+import './App.css';
+
+import Layout from './components/Layout';
+import ProjectOverview from './components/ProjectOverview';
+
+const projects = Array.from({ length: 7 }, () => ({
+  id: faker.random.uuid(),
+  title: faker.company.companyName(),
+  description: faker.lorem.paragraph(),
+}));
+
+function App() {
+  return (
+    <Layout>
+      <h2>Projects</h2>
+      <ProjectOverview projects={projects} />
+    </Layout>
+  );
+}
+
+export default App;
+```
+
+```jsx
+// src/App.js
+import React from 'react';
+import faker from 'faker';
+
+import './App.css';
+
+import Layout from './components/Layout';
+import ProjectOverview from './components/ProjectOverview';
+
+const projects = Array.from({ length: 7 }, () => ({
+  id: faker.random.uuid(),
+  title: faker.company.companyName(),
+  description: faker.lorem.paragraph(),
+}));
+
+class App extends React.Component {
+  render() {
+    return (
+      <Layout>
+        <h2>Projects</h2>
+        <ProjectOverview projects={projects} />
+      </Layout>
+    );
+  }
+}
+
+export default App;
+```
+
+```jsx
+// src/App.js
+import React from 'react';
+
+import './App.css';
+
+import Projects from './services/Projects';
+
+import Layout from './components/Layout';
+import ProjectOverview from './components/ProjectOverview';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      projects: [],
+    };
+  }
+
+  async componentDidMount() {
+    const projects = await Projects.fetchData();
+    this.setState({ projects });
+  }
+
+  render() {
+    const { projects } = this.state;
+    return (
+      <Layout>
+        <h2>Projects</h2>
+        <ProjectOverview projects={projects} />
+      </Layout>
+    );
+  }
+}
+
+export default App;
+```
+
+```jsx
+// src/App.js
+import React from 'react';
+
+import './App.css';
+
+import Projects from './services/Projects';
+
+import Layout from './components/Layout';
+import ProjectOverview from './components/ProjectOverview';
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      projects: [],
+      dataFetched: false,
+    };
+  }
+
+  async componentDidMount() {
+    const projects = await Projects.fetchData(500);
+    this.setState({ projects, dataFetched: true });
+  }
+
+  render() {
+    const { projects, dataFetched } = this.state;
+
+    if (!dataFetched) {
+      return (
+        <Layout>
+          <p>Fetching data...</p>
+        </Layout>
+      );
+    }
+
+    return (
+      <Layout>
+        <h2>Projects</h2>
+        {projects.length > 0 ? (
+          <ProjectOverview projects={projects} />
+        ) : (
+          <p>No projects found.</p>
+        )}
+      </Layout>
+    );
+  }
+}
+
+export default App;
+```
+
+</CodeSurferLayout>
+
+---
+
+## Events
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+<button>
+  Hello
+</button>
+```
+
+```jsx 2:7
+<button
+  onClick={
+    () => {
+      // do stuff!
+      console.log('Hello, world!');
+    }
+  }
+>
+  Hello
+</button>
+```
+
+```jsx
+<div
+  onClick={
+    () => {
+      // do stuff!
+      console.log('Hello, world!');
+    }
+  }
+>
+  Hello
+</div>
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+
+```jsx
+<div
+  onClick={
+    () => {
+      // do stuff!
+      alert('Hello, world!');
+    }
+  }
+>
+  Hello
+</div>
+```
+
+<div
+  onClick={() => {
+    // do stuff!
+    alert('Hello, world!');
+  }}
+>
+  Hello
+</div>
+
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/events/Counter').default} />
+<Code focus="5:10" lang="jsx" code={require('!raw-loader!./examples/events/Counter').default} />
+<Code focus="16:24" lang="jsx" code={require('!raw-loader!./examples/events/Counter').default} />
+<Code focus="12:13" lang="jsx" code={require('!raw-loader!./examples/events/Counter').default} />
+<Code focus="26:37" lang="jsx" code={require('!raw-loader!./examples/events/Counter').default} />
+<Code focus="29" lang="jsx" code={require('!raw-loader!./examples/events/Counter').default} />
+<Code focus="30" lang="jsx" code={require('!raw-loader!./examples/events/Counter').default} />
+<Code focus="32" lang="jsx" code={require('!raw-loader!./examples/events/Counter').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+<Code lang="jsx" code={require('!raw-loader!./examples/events/Counter').default} />
+{require('./render/events/Counter').default()}
+</Step>
+
+<Step>
+<Code focus="12,27,29" lang="jsx" code={require('!raw-loader!./examples/events/Counter.1').default} />
+{require('./render/events/Counter.1').default()}
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+## Exercise
+
+# 🏋️‍♀️🏋️‍♂️ ➡ 💪
+
+---
+
+## Aufgaben
+
+<Appear>
+
+bei Klick auf ein beliebiges Projekt soll die Ansicht in eine `ProjectView` wechseln
+
+`ProjectView` zeigt außer dem Titel und der Beschreibung auch die Anzahl der Tasks an
+
+`ProjectView` enthält einen zurück zur Übersicht Button
+
+die Anzahl der Tasks innerhalb der `ProjectView` ist nach Status kategorisiert (optional)
+
+</Appear>
