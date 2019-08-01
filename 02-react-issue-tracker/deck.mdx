@@ -893,7 +893,7 @@ die `render` Funktion soll sich die Daten aus dem State holen
 <Code focus="9:29" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
 <Code focus="10" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
 <Code focus="11:28" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
-<Code focus="12:14" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
+<Code focus="12:15" lang="jsx" code={require('!raw-loader!./examples/ProjectService.js').default} />
 
 </CodeSurferLayout>
 
@@ -1179,3 +1179,143 @@ bei Klick auf ein beliebiges Projekt soll die Ansicht in eine `ProjectView` wech
 die Anzahl der Tasks innerhalb der `ProjectView` ist nach Status kategorisiert (optional)
 
 </Appear>
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+// src/components/ProjectOverview/ProjectOverview.js
+import React from 'react'; 
+import './ProjectOverview.css'; 
+ 
+const ProjectOverview = ({ projects }) => ( 
+  <div className="project-overview__container"> 
+    {projects.map(project => ( 
+      <article key={project.id} className="project-overview__item"> 
+        <h3>{project.title}</h3> 
+        <p>{project.summary}</p> 
+      </article> 
+    ))} 
+  </div> 
+); 
+ 
+export default ProjectOverview; 
+```
+
+```jsx 5,7,11:13
+// src/components/ProjectOverview/ProjectOverview.js
+import React from 'react'; 
+import './ProjectOverview.css'; 
+ 
+const ProjectOverview = ({ projects, onProjectSelect }) => ( 
+  <div> 
+    <h2>Projects</h2> 
+    <div className="project-overview__container"> 
+      {projects.map(project => ( 
+        <article 
+          key={project.id} 
+          className="project-overview__item" 
+          onClick={() => onProjectSelect(project)} 
+        > 
+          <h3>{project.title}</h3> 
+          <p>{project.summary}</p> 
+        </article> 
+      ))} 
+    </div> 
+  </div> 
+); 
+ 
+export default ProjectOverview; 
+```
+
+```jsx 5,13
+// src/components/ProjectOverview/ProjectOverview.js
+import React from 'react'; 
+import './ProjectOverview.css'; 
+ 
+const ProjectOverview = ({ projects, onProjectSelect }) => ( 
+  <div> 
+    <h2>Projects</h2> 
+    <div className="project-overview__container"> 
+      {projects.map(project => ( 
+        <article 
+          key={project.id} 
+          className="project-overview__item" 
+          onClick={() => onProjectSelect(project)} 
+        > 
+          <h3>{project.title}</h3> 
+          <p>{project.summary}</p> 
+        </article> 
+      ))} 
+    </div> 
+  </div> 
+); 
+ 
+export default ProjectOverview; 
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/events/ProjectView').default} />
+<Code focus="4" lang="jsx" code={require('!raw-loader!./examples/events/ProjectView').default} />
+<Code focus="13,15:19,41" lang="jsx" code={require('!raw-loader!./examples/events/ProjectView').default} />
+<Code focus="5:10" lang="jsx" code={require('!raw-loader!./examples/events/ProjectView').default} />
+<Code focus="20:40" lang="jsx" code={require('!raw-loader!./examples/events/ProjectView').default} />
+<Code focus="22:26" lang="jsx" code={require('!raw-loader!./examples/events/ProjectView').default} />
+<Code focus="27:32" lang="jsx" code={require('!raw-loader!./examples/events/ProjectView').default} />
+<Code focus="33:37" lang="jsx" code={require('!raw-loader!./examples/events/ProjectView').default} />
+<Code focus="38:39" lang="jsx" code={require('!raw-loader!./examples/events/ProjectView').default} />
+
+</CodeSurferLayout>
+
+---
+
+## Aufgaben 🎒🏫
+
+`TaskOverview` und `TaskView`
+
+---
+
+## Aufgaben
+
+### `TaskOverview`
+
+<Split>
+
+<div>
+
+die Component soll in der bestehenden `ProjectView` eingesetzt werden
+
+ordnet die übergebenen Tasks je nach ihren Status in Spalten ein (`todo`, `progress`, `done`)
+
+die `TaskOverview` zeigt von jedem Task nur den Titel an
+
+jeder Task erhält zwei Buttons, um die Tasks in die jeweiligen Status zu verschieben
+</div>
+
+die jeweiligen Buttons sollen deaktiviert oder nicht angezeigt werden, wenn sie sich entweder im ersten oder letzten Status befinden
+
+in dem Status `todo` sollen die Tasks zudem einen zusätzlichen Button bekommen, um sie direkt in den `done`-Status zu verschieben
+
+die Component soll die Anzahl der Tasks in den jeweiligen Spalten darstellen
+
+</Split>
+
+---
+
+## Aufgaben
+
+### `TaskView`
+
+`TaskView` soll ein Event zur Verfügung stellen, um zurück zur `TaskOverview` zu gelangen
+
+die `TaskView` zeigt den Titel, die Beschreibung und den Status an
+
+die `TaskView` bietet eine Möglichkeit zurück zur `TaskOverview` zu gelangen
+
+die `TaskView` bietet eine Möglichkeit den Status des Tasks zu ändern

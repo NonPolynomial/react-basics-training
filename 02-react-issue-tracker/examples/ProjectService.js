@@ -11,7 +11,8 @@ export default {
             () => ({
               id: faker.random.uuid(),
               title: faker.internet.domainName(),
-              description: faker.company.bs(),
+              summary: faker.company.bs(),
+              description: faker.lorem.paragraph(),
               tasks: Array.from(
                 { length: faker.random.number({ min: 5, max: 20 }) },
                 () => ({
