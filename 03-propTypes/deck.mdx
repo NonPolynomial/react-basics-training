@@ -1,0 +1,164 @@
+import { Appear, Notes, Image } from 'mdx-deck';
+import { Split } from 'mdx-deck/layouts';
+
+import {
+  Code,
+  CodeSurferLayout,
+  CodeSurferColumnLayout,
+  Step,
+} from 'code-surfer';
+
+import { inlineCodeStyle } from '../helper';
+
+# Typechecing with PropTypes
+
+---
+
+## Installation
+
+```bash
+$ npm install prop-types
+$ npm add prop-types
+$ yarn add prop-types
+```
+
+```jsx
+import PropTypes from 'prop-types';
+```
+
+---
+
+## Ziele
+
+<Appear>
+
+Validierung übergebener Props
+
+setzen von Standart-Werten
+
+</Appear>
+
+---
+
+## Typen
+
+---
+
+<CodeSurferLayout>
+
+```js
+PropTypes.string
+PropTypes.bool
+PropTypes.number
+
+PropTypes.array
+PropTypes.func
+PropTypes.object
+PropTypes.symbol
+
+PropTypes.element
+```
+
+```js 1:7
+PropTypes.node
+// includes
+PropTypes.string
+PropTypes.bool
+PropTypes.number
+PropTypes.array
+PropTypes.element
+```
+
+```jsx
+PropTypes.any
+```
+
+```jsx
+PropTypes.any
+  .isRequired
+```
+
+```jsx
+PropTypes.object
+
+PropTypes.shape({
+  a: PropTypes.string,
+})
+```
+
+```jsx 3:6
+PropTypes.object
+
+PropTypes.exact({
+  optional: PropTypes.bool,
+  required: PropTypes.bool.isRequired,
+})
+```
+
+```jsx
+PropTypes.instanceOf(Error)
+// componentDidCatch
+```
+
+```jsx
+PropTypes.arrayOf(PropTypes.number)
+PropTypes.objectOf(PropTypes.string)
+PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+```
+
+```jsx
+PropTypes.arrayOf(PropTypes.number)
+PropTypes.objectOf(PropTypes.string)
+PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+
+PropTypes.oneOf(['todo', 'progress', 'done'])
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code code={require('!raw-loader!../02-project-intro/examples/state/Quotes.1').default} />
+<Code code={require('!raw-loader!./examples/Quotes').default} />
+<Code focus="11,22" code={require('!raw-loader!./examples/Quotes').default} />
+<Code focus="5:8" code={require('!raw-loader!./examples/Quotes.1').default} />
+<Code focus="40" code={require('!raw-loader!./examples/Quotes.1').default} />
+<Code focus="6" code={require('!raw-loader!./examples/Quotes.1').default} />
+<Code code={require('!raw-loader!./examples/Quotes.2').default} />
+
+</CodeSurferLayout>
+
+---
+
+<Image src={require('!file-loader!./images/propTypes-error.png')} size="contain" />
+
+---
+
+<CodeSurferLayout>
+
+<Code focus="27" code={require('!raw-loader!./examples/Quotes.2').default} />
+<Code focus="31" code={require('!raw-loader!./examples/Quotes.3').default} />
+<Code focus="10:12" code={require('!raw-loader!./examples/Quotes.3').default} />
+<Code focus="45" code={require('!raw-loader!./examples/Quotes.3').default} />
+
+</CodeSurferLayout>
+
+---
+
+## Exercise 🎉
+
+---
+
+## Aufgabe
+
+<Appear>
+
+`PropTypes` dem Projekt hinzufügen
+
+in allen bestehenden Components PropTypes definieren
+
+...und Standart-Werte setzen
+
+</Appear>
