@@ -162,3 +162,36 @@ in allen bestehenden Components PropTypes definieren
 ...und Standart-Werte setzen
 
 </Appear>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/project/types').default} />
+
+<Code focus="3,7,9:16" lang="jsx" code={require('!raw-loader!./examples/project/ProjectOverview').default} />
+<Code focus="36,37" lang="jsx" code={require('!raw-loader!./examples/project/ProjectOverview').default} />
+
+<Code focus="3,8,10:17" lang="jsx" code={require('!raw-loader!./examples/project/ProjectView').default} />
+<Code focus="71,72" lang="jsx" code={require('!raw-loader!./examples/project/ProjectView').default} />
+
+<Code focus="3,7,9:16" lang="jsx" code={require('!raw-loader!./examples/project/TaskOverview').default} />
+<Code focus="108,109" lang="jsx" code={require('!raw-loader!./examples/project/TaskOverview').default} />
+
+<Code focus="3,5,7:15" lang="jsx" code={require('!raw-loader!./examples/project/TaskView').default} />
+<Code focus="37,38" lang="jsx" code={require('!raw-loader!./examples/project/TaskView').default} />
+
+</CodeSurferLayout>
+
+---
+
+## `Function.prototype` als Standart-Wert?
+
+<Appear>
+
+ist eine noop-Funktion
+
+es muss nicht für jede Component<br/>
+eine eigene Platzhalter-Funktion bereitgestellt werden
+
+</Appear>
