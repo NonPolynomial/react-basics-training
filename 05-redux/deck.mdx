@@ -1,0 +1,617 @@
+import { Appear, Notes, Image } from 'mdx-deck';
+import { Split } from 'mdx-deck/layouts';
+
+import {
+  Code,
+  CodeSurferLayout,
+  CodeSurferColumnLayout,
+  Step,
+} from 'code-surfer';
+
+import { inlineCodeStyle, splitCodeLeft } from '../helper';
+
+# Redux
+
+## State Management
+
+---
+
+<Appear>
+
+Library um ein State Management zu implementieren
+
+nutzt das [SAM](https://sam.js.org) Pattern
+
+</Appear>
+
+---
+
+<Image src={require('!file-loader!./images/sam-pattern.jpg')} size="contain" />
+
+---
+
+## Three Principles
+
+---
+
+<Appear>
+
+### Single source of truth
+
+der **State** der gesamten App befindet<br/>
+sich in _einem_ Objekt (in _einem_ Store)
+
+### State is read-only
+
+die einzige Möglichkeit den **State** zu ändern ist,<br/>
+dem Store eine **Aktion** zu übergeben, die eine Änderung triggert
+
+### Änderungen nur durch _pure functions_
+
+**Reducer**, die die übergebene Aktion interpretieren und<br/>
+Änderungen durchführen, müssen _pure functions_ sein
+
+</Appear>
+
+---
+
+## Actions
+
+---
+
+<CodeSurferColumnLayout sizes={[2,3]}>
+
+<Step>
+
+<div style={splitCodeLeft}>
+  Actions sind einfach Objekte,<br/>
+  die Informationen über die Änderung enthalten
+</div>
+
+```jsx
+// actions.js
+const addTodoAction = {
+  type: 'ADD_TODO',
+  text: 'Build my first Redux app'
+};
+```
+
+</Step>
+<Step>
+
+<div style={splitCodeLeft}>
+  ActionTypes sind Konstante die strings enthalten<br/>
+  und die Art der Änderungen angeben
+</div>
+
+```jsx
+// actions.js
+const ADD_TODO = 'ADD_TODO';
+
+const addTodoAction = {
+  type: ADD_TODO,
+  text: 'Build my first Redux app'
+};
+```
+
+</Step>
+<Step>
+
+<div style={splitCodeLeft}>
+  Action Creator sind Funktionen,<br/>
+  die Actions eines bestimmten ActionTyp erzeugen
+</div>
+
+```jsx
+// actions.js
+const ADD_TODO = 'ADD_TODO';
+
+const addTodo = (text) => {
+  text,
+  type: ADD_TODO,
+};
+
+addTodo('Build my first Redux app');
+/* => {
+  type: ADD_TODO,
+  text: 'Build my first Redux app'
+} */
+```
+
+</Step>
+<Step>
+
+<p>
+  &nbsp;
+</p>
+
+```jsx
+// actions.js
+/*
+ * action types
+ */
+
+export const ADD_TODO = 'ADD_TODO'
+export const TOGGLE_TODO = 'TOGGLE_TODO'
+export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
+
+/*
+ * other constants
+ */
+
+export const VisibilityFilters = {
+  SHOW_ALL: 'SHOW_ALL',
+  SHOW_COMPLETED: 'SHOW_COMPLETED',
+  SHOW_ACTIVE: 'SHOW_ACTIVE'
+}
+
+/*
+ * action creators
+ */
+
+export function addTodo(text) {
+  return { type: ADD_TODO, text }
+}
+
+export function toggleTodo(index) {
+  return { type: TOGGLE_TODO, index }
+}
+
+export function setVisibilityFilter(filter) {
+  return { type: SET_VISIBILITY_FILTER, filter }
+}
+```
+
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+## Reducer
+
+---
+
+<CodeSurferColumnLayout sizes={[2,3]}>
+
+<Step>
+
+<div style={splitCodeLeft}>
+  Reducer ändern den State,<br/>
+  durch die Informatonen in einer Action
+</div>
+
+```jsx
+{
+  visibilityFilter: 'SHOW_ALL',
+  todos: [
+    {
+      text: 'Consider using Redux',
+      completed: true
+    },
+    {
+      text: 'Keep all state in a single tree',
+      completed: false
+    }
+  ]
+};
+```
+
+</Step>
+<Step>
+
+<div style={splitCodeLeft}>
+  Reducer haben folgende Signatur
+  <br/>
+  <br/>
+  vgl. <code style={inlineCodeStyle}>Array.prototype.reduce</code>
+</div>
+
+```jsx
+(previousState, action) => newState
+```
+
+</Step>
+<Step>
+
+<div style={splitCodeLeft}>
+  hier der Reducer für die bisherigen ActionTypes
+</div>
+
+```jsx
+// reducers.js
+import {
+  ADD_TODO,
+  TOGGLE_TODO,
+  SET_VISIBILITY_FILTER,
+  VisibilityFilters
+} from './actions'
+const { SHOW_ALL } = VisibilityFilters
+
+function todoApp(state = initialState, action) {
+  switch (action.type) {
+    case SET_VISIBILITY_FILTER:
+      return Object.assign({}, state, {
+        visibilityFilter: action.filter
+      })
+    case ADD_TODO:
+      return Object.assign({}, state, {
+        todos: [
+          ...state.todos,
+          {
+            text: action.text,
+            completed: false
+          }
+        ]
+      })
+    case TOGGLE_TODO:
+      return Object.assign({}, state, {
+        todos: state.todos.map((todo, index) => {
+          if (index === action.index) {
+            return Object.assign({}, todo, {
+              completed: !todo.completed
+            })
+          }
+          return todo
+        })
+      })
+    default:
+      return state
+  }
+}
+```
+
+</Step>
+<Step>
+
+<div style={splitCodeLeft}>
+  Reducer können aus mehreren Reducers zusammengesetzt werden
+</div>
+
+```jsx 10,12:19,20:28
+// reducers.js
+import {
+  ADD_TODO,
+  TOGGLE_TODO,
+  SET_VISIBILITY_FILTER,
+  VisibilityFilters
+} from './actions'
+const { SHOW_ALL } = VisibilityFilters
+
+function todos(state = [], action) {
+  switch (action.type) {
+    case ADD_TODO:
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
+    case TOGGLE_TODO:
+      return state.map((todo, index) => {
+        if (index === action.index) {
+          return Object.assign({}, todo, {
+            completed: !todo.completed
+          })
+        }
+        return todo
+      })
+    default:
+      return state
+  }
+}
+
+function visibilityFilter(state = SHOW_ALL, action) {
+  switch (action.type) {
+    case SET_VISIBILITY_FILTER:
+      return action.filter
+    default:
+      return state
+  }
+}
+
+function todoApp(state = {}, action) {
+  return {
+    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+    todos: todos(state.todos, action)
+  }
+}
+```
+
+</Step>
+<Step>
+
+<div style={splitCodeLeft}>
+  Reducer können aus mehreren Reducers zusammengesetzt werden
+</div>
+
+```jsx 34:41
+// reducers.js
+import {
+  ADD_TODO,
+  TOGGLE_TODO,
+  SET_VISIBILITY_FILTER,
+  VisibilityFilters
+} from './actions'
+const { SHOW_ALL } = VisibilityFilters
+
+function todos(state = [], action) {
+  switch (action.type) {
+    case ADD_TODO:
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
+    case TOGGLE_TODO:
+      return state.map((todo, index) => {
+        if (index === action.index) {
+          return Object.assign({}, todo, {
+            completed: !todo.completed
+          })
+        }
+        return todo
+      })
+    default:
+      return state
+  }
+}
+
+function visibilityFilter(state = SHOW_ALL, action) {
+  switch (action.type) {
+    case SET_VISIBILITY_FILTER:
+      return action.filter
+    default:
+      return state
+  }
+}
+
+function todoApp(state = {}, action) {
+  return {
+    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+    todos: todos(state.todos, action)
+  }
+}
+```
+
+</Step>
+<Step>
+
+<div style={splitCodeLeft}>
+  Reducer können aus mehreren Reducers zusammengesetzt werden
+</div>
+
+```jsx 43:48
+// reducers.js
+import {
+  ADD_TODO,
+  TOGGLE_TODO,
+  SET_VISIBILITY_FILTER,
+  VisibilityFilters
+} from './actions'
+const { SHOW_ALL } = VisibilityFilters
+
+function todos(state = [], action) {
+  switch (action.type) {
+    case ADD_TODO:
+      return [
+        ...state,
+        {
+          text: action.text,
+          completed: false
+        }
+      ]
+    case TOGGLE_TODO:
+      return state.map((todo, index) => {
+        if (index === action.index) {
+          return Object.assign({}, todo, {
+            completed: !todo.completed
+          })
+        }
+        return todo
+      })
+    default:
+      return state
+  }
+}
+
+function visibilityFilter(state = SHOW_ALL, action) {
+  switch (action.type) {
+    case SET_VISIBILITY_FILTER:
+      return action.filter
+    default:
+      return state
+  }
+}
+
+function todoApp(state = {}, action) {
+  return {
+    visibilityFilter: visibilityFilter(state.visibilityFilter, action),
+    todos: todos(state.todos, action)
+  }
+}
+```
+
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+
+```jsx
+function todos(state = [], action) {
+  // ...
+}
+function visibilityFilter(state = SHOW_ALL, action) {
+  // ...
+}
+
+export default function todoApp(state = {}, action) {
+  return {
+    visibilityFilter: visibilityFilter(
+      state.visibilityFilter,
+      action
+    ),
+    todos: todos(state.todos, action)
+  }
+}
+```
+
+```jsx
+import { combineReducers } from 'redux'
+// ...
+
+function todos(state = [], action) {
+  // ...
+}
+function visibilityFilter(state = SHOW_ALL, action) {
+  // ...
+}
+
+export default todoApp = combineReducers({
+  visibilityFilter,
+  todos
+})
+```
+
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+### Recap
+
+<dl>
+
+<Appear>
+
+<div>
+<dt>
+
+**State**
+</dt>
+
+<dd>enthält Informationen und Daten der App</dd>
+</div>
+
+<div>
+<dt>
+
+**Actions**
+
+</dt>
+<dd>enthalten Informationen, was im State geändert werden soll</dd>
+</div>
+
+<div>
+<dt>
+
+**Reducer (Model)**
+
+</dt>
+<dd>entscheidet, wie der State geändert wird</dd>
+</div>
+
+</Appear>
+
+</dl>
+
+---
+
+## Store
+
+<Appear>
+
+enthält den State
+
+gibt einen read-only Zugriff nach außen -> <code style={inlineCodeStyle}>getState()</code>
+
+erlaubt die Übergabe von Actions -> <code style={inlineCodeStyle}>dispatch(action)</code>
+
+lässt Subscriptions zu -> <code style={inlineCodeStyle}>subscriibe(listener)</code>
+
+</Appear>
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+import { createStore } from 'redux';
+import todoApp from './reducers';
+const store = createStore(todoApp);
+// const store = createStore(todoApp, initialState);
+```
+
+```jsx
+import { createStore } from 'redux';
+
+import {
+  addTodo,
+  toggleTodo,
+  setVisibilityFilter,
+  VisibilityFilters,
+} from './actions';
+import todoApp from './reducers';
+
+const store = createStore(todoApp);
+
+// Log the initial state
+console.log(store.getState());
+
+// Every time the state changes, log it
+// Note that subscribe() returns a function for unregistering the listener
+const unsubscribe = store.subscribe(() => console.log(store.getState()));
+
+// Dispatch some actions
+store.dispatch(addTodo('Learn about actions'));
+store.dispatch(addTodo('Learn about reducers'));
+store.dispatch(addTodo('Learn about store'));
+store.dispatch(toggleTodo(0));
+store.dispatch(toggleTodo(1));
+store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED));
+
+// Stop listening to state updates
+unsubscribe();
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+<Code focus="11" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+<Code focus="14" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+<Code focus="18" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+<Code focus="21:23" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+<Code focus="24:25" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+<Code focus="26" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+<Code focus="29" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+
+</CodeSurferLayout>
+
+---
+
+<Image src={require('!file-loader!./images/redux-store-output.png')} size="contain" />
+
+---
+
+
+<CodeSurferColumnLayout>
+<Step>
+<Code focus="14,21:26" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+<Image src={require('!file-loader!./images/redux-store-output.png')} size="contain" width="100%" />
+</Step>
+</CodeSurferColumnLayout>
+
+
