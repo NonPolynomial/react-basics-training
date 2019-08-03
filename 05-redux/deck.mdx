@@ -177,8 +177,8 @@ export function setVisibilityFilter(filter) {
 <Step>
 
 <div style={splitCodeLeft}>
-  Reducer ändern den State,<br/>
-  durch die Informatonen in einer Action
+  Ein State ist ein einfaches Object,<br/>
+  das Informationen und die Daten der App enthält
 </div>
 
 ```jsx
@@ -201,6 +201,10 @@ export function setVisibilityFilter(filter) {
 <Step>
 
 <div style={splitCodeLeft}>
+  Reducer ändern den State,<br/>
+  durch die Informatonen einer übergebenen Action
+  <br/>
+  <br/>
   Reducer haben folgende Signatur
   <br/>
   <br/>
@@ -538,6 +542,8 @@ erlaubt die Übergabe von Actions -> <code style={inlineCodeStyle}>dispatch(acti
 
 lässt Subscriptions zu -> <code style={inlineCodeStyle}>subscriibe(listener)</code>
 
+kümmert sich um die Interaktion zwischen<br/>**Actions**, dem **Reducer** und unserem **State**
+
 </Appear>
 
 ---
@@ -589,29 +595,126 @@ unsubscribe();
 
 <CodeSurferLayout>
 
-<Code lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
-<Code focus="11" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
-<Code focus="14" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
-<Code focus="18" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
-<Code focus="21:23" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
-<Code focus="24:25" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
-<Code focus="26" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
-<Code focus="29" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/store').default} />
+<Code focus="11" lang="jsx" code={require('!raw-loader!./examples/store').default} />
+<Code focus="14" lang="jsx" code={require('!raw-loader!./examples/store').default} />
+<Code focus="18" lang="jsx" code={require('!raw-loader!./examples/store').default} />
+<Code focus="21:23" lang="jsx" code={require('!raw-loader!./examples/store').default} />
+<Code focus="24:25" lang="jsx" code={require('!raw-loader!./examples/store').default} />
+<Code focus="26" lang="jsx" code={require('!raw-loader!./examples/store').default} />
+<Code focus="29" lang="jsx" code={require('!raw-loader!./examples/store').default} />
 
 </CodeSurferLayout>
 
 ---
 
-<Image src={require('!file-loader!./images/redux-store-output.png')} size="contain" />
-
----
-
-
 <CodeSurferColumnLayout>
 <Step>
-<Code focus="14,21:26" lang="jsx" code={require('!raw-loader!./examples/store.js').default} />
+<Code focus="14,21:26" lang="jsx" code={require('!raw-loader!./examples/store').default} />
 <Image src={require('!file-loader!./images/redux-store-output.png')} size="contain" width="100%" />
 </Step>
 </CodeSurferColumnLayout>
 
+---
 
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./counter/store/actions').default} />
+<Code focus="2,6:9" lang="jsx" code={require('!raw-loader!./counter/store/actions').default} />
+<Code focus="3,11:14" lang="jsx" code={require('!raw-loader!./counter/store/actions').default} />
+<Code focus="4,16:18" lang="jsx" code={require('!raw-loader!./counter/store/actions').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./counter/store/reducer').default} />
+<Code focus="2" lang="jsx" code={require('!raw-loader!./counter/store/reducer').default} />
+<Code focus="4:6" lang="jsx" code={require('!raw-loader!./counter/store/reducer').default} />
+<Code focus="10,11" lang="jsx" code={require('!raw-loader!./counter/store/reducer').default} />
+<Code focus="12:16" lang="jsx" code={require('!raw-loader!./counter/store/reducer').default} />
+<Code focus="17:21" lang="jsx" code={require('!raw-loader!./counter/store/reducer').default} />
+<Code focus="22,23" lang="jsx" code={require('!raw-loader!./counter/store/reducer').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./counter/App').default} />
+<Code focus="2,3,9,13:18" lang="jsx" code={require('!raw-loader!./counter/App').default} />
+<Code focus="4,7,11" lang="jsx" code={require('!raw-loader!./counter/App').default} />
+<Code focus="5" lang="jsx" code={require('!raw-loader!./counter/App').default} />
+<Code focus="11,14,16" lang="jsx" code={require('!raw-loader!./counter/App').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./counter/Counter').default} />
+<Code focus="4,6" lang="jsx" code={require('!raw-loader!./counter/Counter').default} />
+<Code focus="8:14" lang="jsx" code={require('!raw-loader!./counter/Counter').default} />
+<Code focus="6,16,18:20,22:24,26" lang="jsx" code={require('!raw-loader!./counter/Counter').default} />
+<Code focus="33,35" lang="jsx" code={require('!raw-loader!./counter/Counter').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{
+  transform: 'scale(3)',
+}}>
+{require('./counter/render').default()}
+</div>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./counter/Counter').default} />
+<Code lang="jsx" code={require('!raw-loader!./counter/Counter.1').default} />
+<Code focus="8:35" lang="jsx" code={require('!raw-loader!./counter/Counter.1').default} />
+<Code focus="8:18" lang="jsx" code={require('!raw-loader!./counter/Counter.1').default} />
+<Code focus="20" lang="jsx" code={require('!raw-loader!./counter/Counter.1').default} />
+<Code focus="22:24,26:28,30" lang="jsx" code={require('!raw-loader!./counter/Counter.1').default} />
+<Code focus="37:47" lang="jsx" code={require('!raw-loader!./counter/Counter.1').default} />
+<Code focus="37,45" lang="jsx" code={require('!raw-loader!./counter/Counter.1').default} />
+<Code focus="38:42,46" lang="jsx" code={require('!raw-loader!./counter/Counter.1').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{
+  transform: 'scale(3)',
+}}>
+{require('./counter/render.1').default()}
+</div>
+
+---
+
+## Exercise
+
+---
+
+### Aufgabe
+
+<Appear>
+
+`$ npm add redux react-redux`
+
+Redux Store einbauen
+
+Actions definieren (ActionTypes & Action Creators)
+
+`App.js` soll entscheiden,<br/>
+welche Component gerendert wird
+
+Events in einzelnen Components sollen bestehen bleiben
+
+</Appear>
