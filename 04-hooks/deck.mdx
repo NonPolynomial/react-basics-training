@@ -38,3 +38,183 @@ Lifecycle hooks für `functional components`
 
 ---
 
+`useState`
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/useState/Counter.0').default} />
+<Code focus="9" lang="jsx" code={require('!raw-loader!./examples/useState/Counter.0').default} />
+<Code focus="5:21" lang="jsx" code={require('!raw-loader!./examples/useState/Counter.0').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/useState/Counter.1').default} />
+<Code focus="7,8,10" lang="jsx" code={require('!raw-loader!./examples/useState/Counter.1').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/useState/Counter.1').default} />
+{require('./render/useState/Counter.1').default()}
+
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/useState/Counter.1').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/useState/Counter.2').default} />
+<Code focus="2" lang="jsx" code={require('!raw-loader!./examples/useState/Counter.2').default} />
+<Code focus="5" lang="jsx" code={require('!raw-loader!./examples/useState/Counter.2').default} />
+<Code focus="9" lang="jsx" code={require('!raw-loader!./examples/useState/Counter.2').default} />
+<Code focus="10" lang="jsx" code={require('!raw-loader!./examples/useState/Counter.2').default} />
+<Code focus="12" lang="jsx" code={require('!raw-loader!./examples/useState/Counter.2').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/useState/Counter.2').default} />
+{require('./render/useState/Counter.2').default()}
+
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/useState/Counter.2').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/useState/Counter.2.rename').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/useState/Counter.2.rename.1').default} />
+
+</CodeSurferLayout>
+
+---
+
+`useEffect`
+
+---
+
+kombiniert die Lifecycle hooks
+
+<Appear>
+
+`componentDidMount`
+
+`componentDidUpdate`
+
+`componentWillUnmount`
+
+</Appear>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.0').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.1').default} />
+<Code focus="2" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.2').default} />
+<Code focus="15,31" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.2').default} />
+<Code focus="2" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.3').default} />
+<Code focus="17:22" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.3').default} />
+
+</CodeSurferLayout>
+
+---
+
+<Image src={require('!file-loader!./images/hooks-missing-cleanup.png')} size="contain" />
+
+---
+
+<CodeSurferLayout>
+
+<Code focus="24:26" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.3').default} />
+<Code focus="18,23:25" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.4').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.4').default} />
+{require('./render/useEffect/Quotes.4').default()}
+
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code focus="17:26" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.4').default} />
+<Code focus="16,26" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.5').default} />
+
+</CodeSurferLayout>
+
+---
+
+### Custom hooks
+
+---
+
+<CodeSurferLayout>
+
+<Code focus="15:26" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.5').default} />
+<Code focus="1:19" lang="jsx" code={require('!raw-loader!./examples/useEffect/useQuoteRotation').default} />
+<Code focus="5,17" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.6').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.6').default} />
+{require('./render/useEffect/Quotes.6').default()}
+
+</Step>
+
+</CodeSurferColumnLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code focus="18" lang="jsx" code={require('!raw-loader!./examples/useEffect/useQuoteRotation').default} />
+<Code focus="18" lang="jsx" code={require('!raw-loader!./examples/useEffect/currentQuote/useQuoteRotation').default} />
+<Code focus="16:20" lang="jsx" code={require('!raw-loader!./examples/useEffect/Quotes.6').default} />
+<Code focus="17,19" lang="jsx" code={require('!raw-loader!./examples/useEffect/currentQuote/Quotes.7').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferColumnLayout>
+
+<Step>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/useEffect/currentQuote/Quotes.7').default} />
+{require('./render/useEffect/Quotes.7').default()}
+
+</Step>
+
+</CodeSurferColumnLayout>
