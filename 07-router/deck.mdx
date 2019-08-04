@@ -224,6 +224,134 @@ import { NavLink } from 'react-router-dom';
 
 ---
 
+`location`, `match` and `history`
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+const Component = ({ location, match, history }) => (
+  <div>
+    {match.params.magic}
+  </div>
+);
+
+<Route path="/path/:magic" component={Component} />
+```
+
+```jsx 1[32:36],3[6:10]
+const Component = ({ location, match, history }) => (
+  <div>
+    {match.params.magic}
+  </div>
+);
+
+<Route path="/path/:magic" component={Component} />
+```
+
+```jsx 3[19:23],7[20:25]
+const Component = ({ location, match, history }) => (
+  <div>
+    {match.params.magic}
+  </div>
+);
+
+<Route path="/path/:magic" component={Component} />
+```
+
+```jsx
+const UserView = ({ userId }) => {
+  // get user with given userId
+  return // ...
+};
+
+<Route
+  path="/users/:id"
+  render={
+    ({ match: { id } }) =>
+      <UserView userId={id} />
+  }
+/>
+```
+
+```jsx 1[21:26],7[16:18],9[17:18],10[17:22,25:26]
+const UserView = ({ userId }) => {
+  // get user with given userId
+  return // ...
+};
+
+<Route
+  path="/users/:id"
+  render={
+    ({ match: { id } }) =>
+      <UserView userId={id} />
+  }
+/>
+```
+
+```jsx
+import { withRouter } from 'react-router-dom';
+
+const ComponentWithRouter = ({ location, match, history }) => {
+  // do something with location, match and/or history...
+}
+
+export default withRouter(ComponentWithRouter);
+```
+
+```jsx 1[10:19],7[16:25]
+import { withRouter } from 'react-router-dom';
+
+const ComponentWithRouter = ({ location, match, history }) => {
+  // do something with location, match and/or history...
+}
+
+export default withRouter(ComponentWithRouter);
+```
+
+```jsx 1:16
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+const ComponentWithRouter = ({ location, match, history }) => {
+  // do something with location, match and/or history...
+};
+
+const mapStateToProps = // ...
+const mapDispatchToProps = // ...
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ComponentWithRouter)
+);
+```
+
+```jsx 1[10:16],2[10:19],11[16:25],12[3:9]
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+
+const ComponentWithRouter = ({ location, match, history }) => {
+  // do something with location, match and/or history...
+};
+
+const mapStateToProps = // ...
+const mapDispatchToProps = // ...
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(ComponentWithRouter)
+);
+```
+
+</CodeSurferLayout>
+
+---
+
 ## Exercise
 
 ---
