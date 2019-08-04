@@ -8,6 +8,7 @@ import { slides as propTypes } from './03-propTypes/deck.mdx';
 import { slides as hooks } from './04-hooks/deck.mdx';
 import { slides as redux } from './05-redux/deck.mdx';
 import { slides as forms } from './06-forms/deck.mdx';
+import { slides as router } from './07-router/deck.mdx';
 
 export const slides = [
   ...intro,
@@ -16,6 +17,7 @@ export const slides = [
   ...hooks,
   ...redux,
   ...forms,
+  ...router,
 ];
 
 export const themes = [future, codeTheme];

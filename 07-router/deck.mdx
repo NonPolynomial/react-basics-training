@@ -1,0 +1,243 @@
+import { Appear, Notes, Image } from 'mdx-deck';
+import { Split } from 'mdx-deck/layouts';
+
+import {
+  Code,
+  CodeSurferLayout,
+  CodeSurferColumnLayout,
+  Step,
+} from 'code-surfer';
+
+import { inlineCodeStyle, splitCodeLeft } from '../helper';
+
+# Router
+
+---
+
+<Appear>
+
+<i style={{ fontStyle: 'unset', color: 'green' }}>✔</i> App Structure
+
+<i style={{ fontStyle: 'unset', color: 'green' }}>✔</i> Component Structure
+
+<i style={{ fontStyle: 'unset', color: 'red' }}>✖</i> Route Structure
+
+</Appear>
+
+---
+
+### React-Router
+
+<Appear>
+
+#### Web 😎
+
+<div>
+
+```bash
+$ npm add react-router-dom
+```
+
+</div>
+
+</Appear>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./example-1').default} />
+<Code focus="2" lang="jsx" code={require('!raw-loader!./example-1').default} />
+<Code focus="4,5" lang="jsx" code={require('!raw-loader!./example-1').default} />
+<Code focus="8,31" lang="jsx" code={require('!raw-loader!./example-1').default} />
+<Code focus="9,30" lang="jsx" code={require('!raw-loader!./example-1').default} />
+<Code focus="10:13" lang="jsx" code={require('!raw-loader!./example-1').default} />
+<Code focus="15" lang="jsx" code={require('!raw-loader!./example-1').default} />
+<Code focus="16:29" lang="jsx" code={require('!raw-loader!./example-1').default} />
+<Code focus="15,17,18" lang="jsx" code={require('!raw-loader!./example-1').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{ width: '50vw', transform: 'scale(1.5)' }}>
+{require('./example-1').default()}
+</div>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./example-1').default} />
+<Code lang="jsx" code={require('!raw-loader!./example-1/quotes').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{ width: '50vw', transform: 'scale(1.5)' }}>
+{require('./example-1/quotes').default()}
+</div>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./example-1/quotes').default} />
+<Code lang="jsx" code={require('!raw-loader!./example-1/quotes.1').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{ width: '50vw', transform: 'scale(1.5)' }}>
+{require('./example-1/quotes.1').default()}
+</div>
+
+---
+
+<CodeSurferLayout>
+
+<Code focus="2,17" lang="jsx" code={require('!raw-loader!./example-1/quotes.1').default} />
+<Code focus="2,15,31" lang="jsx" code={require('!raw-loader!./example-1/switch').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{ width: '50vw', transform: 'scale(1.5)' }}>
+{require('./example-1/switch').default()}
+</div>
+
+---
+
+### Switch
+
+<Appear>
+
+rendert immer nur eine `Route`
+
+rendert die `Route` deren `path` als erstes zutrifft
+
+</Appear>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./example-switch/without').default} />
+<Code focus="1:8" lang="jsx" code={require('!raw-loader!./example-switch/with').default} />
+<Code lang="jsx" code={require('!raw-loader!./example-switch/with.1').default} />
+<Code focus="6" lang="jsx" code={require('!raw-loader!./example-switch/with.2').default} />
+
+</CodeSurferLayout>
+
+---
+
+### URL Parameter
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./example-params').default} />
+<Code focus="4:8" lang="jsx" code={require('!raw-loader!./example-params').default} />
+<Code focus="21" lang="jsx" code={require('!raw-loader!./example-params').default} />
+<Code focus="14:18" lang="jsx" code={require('!raw-loader!./example-params').default} />
+<Code focus="14[26:29],16[26:29],18[26:29],21[27:32]" lang="jsx" code={require('!raw-loader!./example-params').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div>
+  {require('./example-params').default()}
+</div>
+
+---
+
+`Link`s
+
+vs
+
+`NavLink`s
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+import { Link } from 'react-router-dom';
+
+<Link
+  to="/path/to/something"
+  className="link"
+>
+  Something
+</Link>
+```
+
+```jsx
+import { NavLink } from 'react-router-dom';
+
+<NavLink
+  to="/path/to/something"
+  className="link"
+  activeClassName="selected"
+>
+  Something
+</NavLink>
+```
+
+```jsx
+import { NavLink } from 'react-router-dom';
+
+<NavLink
+  to="/path/to/something"
+  className="link"
+  activeStyle={{
+    fontWeight: "bold",
+    color: "red",
+  }}
+>
+  Something
+</NavLink>
+```
+
+```jsx 6:10
+import { NavLink } from 'react-router-dom';
+
+<NavLink
+  to="/path/to/something"
+  className="link"
+  activeClassName="selected"
+  activeStyle={{
+    fontWeight: "bold",
+    color: "red",
+  }}
+>
+  Something
+</NavLink>
+```
+
+</CodeSurferLayout>
+
+---
+
+## Exercise
+
+---
+
+### Aufgaben
+
+<Appear>
+
+`$ npm add react-router-dom`
+
+Router implementieren
+
+Store updaten
+
+Components updaten und `Link`s bzw. `NavLink`s einsetzen
+
+</Appear>

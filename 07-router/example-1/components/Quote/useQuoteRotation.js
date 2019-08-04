@@ -15,7 +15,7 @@ const useQuoteRotation = ({ quotes, delay }) => {
     };
   }, [current, quotes]);
 
-  return current;
+  return quotes[current];
 };
 
 export default useQuoteRotation;

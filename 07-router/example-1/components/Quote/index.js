@@ -1,4 +1,4 @@
-// Quotes.js
+// components/Quote/index.js
 import React from 'react';
 import PropTypes from 'prop-types';
 
