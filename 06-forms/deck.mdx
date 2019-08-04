@@ -26,3 +26,207 @@ beim Fetchen von Daten werden sowohl Projekte als auch Tasks gesetzt
 Update des Stores (Actions, Reducer)
 
 </Appear>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./solutions-structure/Projects').default} />
+<Code focus="8:16" lang="jsx" code={require('!raw-loader!./solutions-structure/Projects').default} />
+<Code focus="17:31" lang="jsx" code={require('!raw-loader!./solutions-structure/Projects').default} />
+<Code focus="29" lang="jsx" code={require('!raw-loader!./solutions-structure/Projects').default} />
+<Code focus="32" lang="jsx" code={require('!raw-loader!./solutions-structure/Projects').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./solutions-structure/actions').default} />
+<Code focus="3" lang="jsx" code={require('!raw-loader!./solutions-structure/actions').default} />
+<Code focus="21:24" lang="jsx" code={require('!raw-loader!./solutions-structure/actions').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./solutions-structure/reducers').default} />
+<Code focus="6" lang="jsx" code={require('!raw-loader!./solutions-structure/reducers').default} />
+<Code focus="15" lang="jsx" code={require('!raw-loader!./solutions-structure/reducers').default} />
+<Code focus="32:39" lang="jsx" code={require('!raw-loader!./solutions-structure/reducers').default} />
+<Code focus="75" lang="jsx" code={require('!raw-loader!./solutions-structure/reducers').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./solutions-structure/types').default} />
+<Code focus="13:18" lang="jsx" code={require('!raw-loader!./solutions-structure/types').default} />
+<Code focus="4:11" lang="jsx" code={require('!raw-loader!./solutions-structure/types').default} />
+<Code focus="9,10" lang="jsx" code={require('!raw-loader!./solutions-structure/types').default} />
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./solutions-structure/App').default} />
+<Code focus="14" lang="jsx" code={require('!raw-loader!./solutions-structure/App').default} />
+<Code focus="22" lang="jsx" code={require('!raw-loader!./solutions-structure/App').default} />
+<Code focus="26,29" lang="jsx" code={require('!raw-loader!./solutions-structure/App').default} />
+<Code focus="36,40" lang="jsx" code={require('!raw-loader!./solutions-structure/App').default} />
+<Code focus="45,51" lang="jsx" code={require('!raw-loader!./solutions-structure/App').default} />
+<Code focus="94,99" lang="jsx" code={require('!raw-loader!./solutions-structure/App').default} />
+<Code focus="104:109" lang="jsx" code={require('!raw-loader!./solutions-structure/App').default} />
+<Code focus="72:75" lang="jsx" code={require('!raw-loader!./solutions-structure/App').default} />
+
+</CodeSurferLayout>
+
+---
+
+# Forms
+
+---
+
+<CodeSurferLayout>
+
+```jsx
+<form>
+  <label>
+    Name:
+    <input type="text" name="name" />
+  </label>
+  <input type="submit" value="Submit" />
+</form>
+```
+
+</CodeSurferLayout>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/simple-form').default} />
+<Code focus="4,5" lang="jsx" code={require('!raw-loader!./examples/simple-form').default} />
+<Code focus="15,16:18" lang="jsx" code={require('!raw-loader!./examples/simple-form').default} />
+<Code focus="8:10" lang="jsx" code={require('!raw-loader!./examples/simple-form').default} />
+<Code focus="22" lang="jsx" code={require('!raw-loader!./examples/simple-form').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{transform: 'scale(2)'}}>
+{require('./examples/simple-form').default()}
+</div>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/simple-form').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/simple-form.1').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{transform: 'scale(2)'}}>
+{require('./examples/simple-form.1').default()}
+</div>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/simple-form').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/uppercase').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{transform: 'scale(2)'}}>
+{require('./examples/uppercase').default()}
+</div>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/simple-form').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/error-state').default} />
+<Code focus="3:11" lang="jsx" code={require('!raw-loader!./examples/error-state').default} />
+<Code focus="14" lang="jsx" code={require('!raw-loader!./examples/error-state').default} />
+<Code focus="21:23" lang="jsx" code={require('!raw-loader!./examples/error-state').default} />
+<Code focus="27,31" lang="jsx" code={require('!raw-loader!./examples/error-state').default} />
+<Code focus="33:37" lang="jsx" code={require('!raw-loader!./examples/error-state').default} />
+<Code focus="40" lang="jsx" code={require('!raw-loader!./examples/error-state').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{transform: 'scale(2)'}}>
+{require('./examples/error-state').default()}
+</div>
+
+---
+
+<CodeSurferLayout>
+
+<Code focus="33:37" lang="jsx" code={require('!raw-loader!./examples/error-state').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/error-state.blur').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{transform: 'scale(2)'}}>
+{require('./examples/error-state.blur').default()}
+</div>
+
+---
+
+<CodeSurferLayout>
+
+<Code lang="jsx" code={require('!raw-loader!./examples/error-state.blur').default} />
+<Code lang="jsx" code={require('!raw-loader!./examples/error-state.submit').default} />
+
+</CodeSurferLayout>
+
+---
+
+<div style={{transform: 'scale(2)'}}>
+{require('./examples/error-state.submit').default()}
+</div>
+
+---
+
+## Exercise
+
+---
+
+### Aufgaben
+
+<Appear>
+
+Erstellen von Form Components zum Hinzufügen<br/>
+von Projekten oder Tasks
+
+Erweiterung des Stores
+
+<span>
+  <span style={{color: 'red', fontWeight: 'bold'}}>ACHTUNG!</span>&nbsp;
+  automatische Vergabe der IDs
+</span>
+
+</Appear>
+
+---
