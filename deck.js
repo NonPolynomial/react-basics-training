@@ -7,6 +7,7 @@ import { slides as reactApp } from './02-project-intro/deck.mdx';
 import { slides as propTypes } from './03-propTypes/deck.mdx';
 import { slides as hooks } from './04-hooks/deck.mdx';
 import { slides as redux } from './05-redux/deck.mdx';
+import { slides as forms } from './06-forms/deck.mdx';
 
 export const slides = [
   ...intro,
@@ -14,6 +15,7 @@ export const slides = [
   ...propTypes,
   ...hooks,
   ...redux,
+  ...forms,
 ];
 
 export const themes = [future, codeTheme];
