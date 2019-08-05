@@ -1,0 +1,174 @@
+import { Appear, Notes, Image } from 'mdx-deck';
+import { Split } from 'mdx-deck/layouts';
+
+import {
+  Code,
+  CodeSurferLayout,
+  CodeSurferColumnLayout,
+  Step,
+} from 'code-surfer';
+
+import { inlineCodeStyle, splitCodeLeft } from '../helper';
+
+# Weiterführende Themen
+
+---
+
+## ServerSide Rendering (SSR)
+
+---
+
+### Wozu
+
+<Appear>
+
+User Experience erhöhen
+
+schnelleres Laden der Seite, da schon Inhalte ausgegeben werden
+
+kann positiven Einfluss auf SEO haben
+
+</Appear>
+
+---
+
+### Wie funktioniert es mit React
+
+<Appear>
+
+ReactDOM bietet das server-seitige Rendern von Components
+
+server-seitiges Ausgeben des gerenderten HTMLs -> `ReactDOMServer.renderToString(element)`
+
+client-seitiges Überschreiben des Inhalts -> `ReactDOM.hydrate(element, container)`
+
+</Appear>
+
+---
+
+### Next.js
+
+<Appear>
+
+React Framework für ServerSide Rendering
+
+Node.js App, die gerenderte Inhalte ausgibt
+
+bietet die Möglichkeit eine statische Seite generieren zu lassen
+
+</Appear>
+
+---
+
+### Gatsby
+
+<Appear>
+
+React Framework für Static Sites
+
+generiert eine statische Seite unter<br/>
+Verwendung von Components und Routing
+
+</Appear>
+
+---
+
+## Packages
+
+<Appear>
+
+`react`
+
+`react-dom`
+
+`redux`, `react-redux`
+
+`react-router-dom`
+
+</Appear> 
+
+---
+
+## Tooling
+
+<Appear>
+
+`create-react-app` - boilerplating React projects
+
+`webpack` - module bundler for JavaScript projects
+
+`babel` - a JavaScript compiler
+
+React Developer Tools
+
+Redux DevTools
+
+</Appear>
+
+---
+
+## Unterschiede zu anderen Frameworks und Bibliotheken
+
+---
+
+### Vue.js
+
+<Appear>
+
+Vue.js-Templates sind HTML-based
+
+Component-scoped CSS
+
+hat eigene Bibliotheken und Frameworks zur Verwendung<br/>
+z.B. Vuex für State Management
+
+</Appear>
+
+---
+
+### Angular
+
+<Appear>
+
+verwendet TypeScript als Sprache
+
+Angular Templates sind "HTML"-based
+
+ist ein komplettes Framework mit strikten Vorgaben
+
+wesentlich höhere Einarbeitungszeit<br/>
+• in das Framework<br/>
+• in Projekte
+
+</Appear>
+
+---
+
+### Ember
+
+<Appear>
+
+ganzheitliches monolithisches Framework
+
+hat einen großen Bereich,<br/>
+der sich nur mit der Steuerung des Data Flows befasst
+
+</Appear>
+
+---
+
+## Ausblick
+
+<Appear>
+
+Higher Order Components
+
+Babel-Konfiguration
+
+Webpack-Konfiguration
+
+Verwendung von Component Libraries (z.B. `MaterialUI`, `Formik`)
+
+Lazy- / Eager-Loading Konzepte
+
+</Appear>
